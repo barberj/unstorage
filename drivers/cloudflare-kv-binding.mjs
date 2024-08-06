@@ -1,6 +1,6 @@
 import { defineDriver, joinKeys } from "./utils/index.mjs";
 import { getKVBinding } from "./utils/cloudflare.mjs";
-const DRIVER_NAME = "cloudflare-kv-binding";
+const DRIVER_NAME = "cs-cloudflare-kv-binding";
 export default defineDriver((opts) => {
   const r = (key = "") => opts.base ? joinKeys(opts.base, key) : key;
   async function getKeys(base = "") {
@@ -30,11 +30,15 @@ export default defineDriver((opts) => {
       return binding.get(key);
     },
     setItem(key, value, topts) {
+      console.log("************************************************");
+      console.log("cloudflare-kv-http.topts ", topts.ttl);
+      console.log("************************************************");
       key = r(key);
       let expirationOpts = {};
       if (topts.ttl) {
         expirationOpts.expirationTtl = topts.ttl;
       }
+      console.log("cloudflare-kv-http.expirationOpts", expirationOpts.expirationTtl);
       const binding = getKVBinding(opts.binding);
       return binding.put(key, value, expirationOpts);
     },

@@ -11,7 +11,7 @@ export interface KVOptions {
 
 // https://developers.cloudflare.com/workers/runtime-apis/kv
 
-const DRIVER_NAME = "cloudflare-kv-binding";
+const DRIVER_NAME = "cs-cloudflare-kv-binding";
 
 export default defineDriver((opts: KVOptions) => {
   const r = (key: string = "") => (opts.base ? joinKeys(opts.base, key) : key);
@@ -48,11 +48,15 @@ export default defineDriver((opts: KVOptions) => {
       return binding.get(key);
     },
     setItem(key, value, topts) {
+      console.log("************************************************");
+      console.log("cloudflare-kv-http.topts ", topts.ttl);
+      console.log("************************************************");
       key = r(key);
       let expirationOpts: TransactionOptions = {};
       if (topts.ttl) {
         expirationOpts.expirationTtl = topts.ttl;
       }
+      console.log("cloudflare-kv-http.expirationOpts", expirationOpts.expirationTtl);
       const binding = getKVBinding(opts.binding);
       return binding.put(key, value, expirationOpts);
     },

@@ -63,10 +63,13 @@ module.exports = (0, _utils.defineDriver)((opts = {}) => {
         ctime
       };
     },
-    setItem(key, value) {
+    setItem(key, value, topts) {
       if (opts.readOnly) {
         return;
       }
+      console.log("************************************************");
+      console.log("fs.topts ", topts.ttl);
+      console.log("************************************************");
       return (0, _nodeFs2.writeFile)(r(key), value, "utf8");
     },
     setItemRaw(key, value) {

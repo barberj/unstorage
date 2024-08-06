@@ -542,7 +542,7 @@ declare const builtinDrivers: {
     readonly azureKeyVault: "unstorage/drivers/azure-key-vault";
     readonly azureStorageBlob: "unstorage/drivers/azure-storage-blob";
     readonly azureStorageTable: "unstorage/drivers/azure-storage-table";
-    readonly cloudflareKVBinding: "unstorage/drivers/cloudflare-kv-binding";
+    readonly csCloudflareKVBinding: "unstorage/drivers/cloudflare-kv-binding";
     readonly cloudflareKVHTTP: "unstorage/drivers/cloudflare-kv-http";
     readonly cloudflareR2Binding: "unstorage/drivers/cloudflare-r2-binding";
     readonly fs: "unstorage/drivers/fs";

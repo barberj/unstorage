@@ -53,10 +53,13 @@ export default defineDriver((opts = {}) => {
       const { atime, mtime, size, birthtime, ctime } = await fsp.stat(r(key)).catch(() => ({}));
       return { atime, mtime, size, birthtime, ctime };
     },
-    setItem(key, value) {
+    setItem(key, value, topts) {
       if (opts.readOnly) {
         return;
       }
+      console.log("************************************************");
+      console.log("fs.topts ", topts.ttl);
+      console.log("************************************************");
       return writeFile(r(key), value, "utf8");
     },
     setItemRaw(key, value) {

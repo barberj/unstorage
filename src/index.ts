@@ -9,7 +9,7 @@ export const builtinDrivers = {
   azureKeyVault: "unstorage/drivers/azure-key-vault",
   azureStorageBlob: "unstorage/drivers/azure-storage-blob",
   azureStorageTable: "unstorage/drivers/azure-storage-table",
-  cloudflareKVBinding: "unstorage/drivers/cloudflare-kv-binding",
+  csCloudflareKVBinding: "unstorage/drivers/cloudflare-kv-binding",
   cloudflareKVHTTP: "unstorage/drivers/cloudflare-kv-http",
   cloudflareR2Binding: "unstorage/drivers/cloudflare-r2-binding",
   fs: "unstorage/drivers/fs",

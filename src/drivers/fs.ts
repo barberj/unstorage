@@ -70,10 +70,13 @@ export default defineDriver((opts: FSStorageOptions = {}) => {
         .catch(() => ({}) as Stats);
       return { atime, mtime, size, birthtime, ctime };
     },
-    setItem(key, value) {
+    setItem(key, value, topts) {
       if (opts.readOnly) {
         return;
       }
+      console.log("************************************************");
+      console.log("fs.topts ", topts.ttl);
+      console.log("************************************************");
       return writeFile(r(key), value, "utf8");
     },
     setItemRaw(key, value) {

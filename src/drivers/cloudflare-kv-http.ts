@@ -140,7 +140,10 @@ export default defineDriver<KVHTTPOptions>((opts) => {
     }
   };
 
-  const setItem = async (key: string, value: any) => {
+  const setItem = async (key: string, value: any, topts: any) => {
+    console.log("************************************************");
+    console.log("cloudflare-kv-http.topts ", topts.ttl);
+    console.log("************************************************");
     return await kvFetch(`/values/${r(key)}`, { method: "PUT", body: value });
   };
 

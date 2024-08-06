@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _utils = require("./utils/index.cjs");
 var _cloudflare = require("./utils/cloudflare.cjs");
-const DRIVER_NAME = "cloudflare-kv-binding";
+const DRIVER_NAME = "cs-cloudflare-kv-binding";
 module.exports = (0, _utils.defineDriver)(opts => {
   const r = (key = "") => opts.base ? (0, _utils.joinKeys)(opts.base, key) : key;
   async function getKeys(base = "") {
@@ -39,11 +39,15 @@ module.exports = (0, _utils.defineDriver)(opts => {
       return binding.get(key);
     },
     setItem(key, value, topts) {
+      console.log("************************************************");
+      console.log("cloudflare-kv-http.topts ", topts.ttl);
+      console.log("************************************************");
       key = r(key);
       let expirationOpts = {};
       if (topts.ttl) {
         expirationOpts.expirationTtl = topts.ttl;
       }
+      console.log("cloudflare-kv-http.expirationOpts", expirationOpts.expirationTtl);
       const binding = (0, _cloudflare.getKVBinding)(opts.binding);
       return binding.put(key, value, expirationOpts);
     },

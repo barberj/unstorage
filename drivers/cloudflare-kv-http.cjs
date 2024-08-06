@@ -65,7 +65,10 @@ module.exports = (0, _utils.defineDriver)(opts => {
       throw err;
     }
   };
-  const setItem = async (key, value) => {
+  const setItem = async (key, value, topts) => {
+    console.log("************************************************");
+    console.log("cloudflare-kv-http.topts ", topts.ttl);
+    console.log("************************************************");
     return await kvFetch(`/values/${r(key)}`, {
       method: "PUT",
       body: value
