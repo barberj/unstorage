@@ -3,9 +3,7 @@ node_modules
 *.log
 .DS_Store
 coverage
-dist
 tmp
-/drivers
 /test.*
 __*
 .vercel
